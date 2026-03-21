@@ -32,4 +32,15 @@ const upload = multer({
 // Route: POST /api/recognition
 router.post('/recognition', upload.single('image'), recognitionController.recognizeCraft);
 
+// Route: POST /api/analyze-product
+router.post('/analyze-product', recognitionController.analyzeProductUrl);
+
+// Helper GET route to show status
+router.get('/recognition', (req, res) => {
+  res.json({ 
+    success: true, 
+    message: "CraftVision Recognition endpoint is ready. Use POST to upload and analyze images." 
+  });
+});
+
 module.exports = router;

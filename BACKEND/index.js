@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const path = require('path');
 const recognitionRoutes = require('./routes/recognition');
 const historyRoutes = require('./routes/history');
+const orderRoutes = require('./routes/orders');
 
 const app = express();
 const PORT = process.env.PORT || 5002; 
@@ -21,6 +22,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Routes
 app.use('/api', recognitionRoutes);
 app.use('/api', historyRoutes);
+app.use('/api', orderRoutes);
 
 // Root endpoint
 app.get('/', (req, res) => {

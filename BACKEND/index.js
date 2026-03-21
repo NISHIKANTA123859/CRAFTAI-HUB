@@ -7,6 +7,7 @@ const recognitionRoutes = require('./routes/recognition');
 const historyRoutes = require('./routes/history');
 const generationRoutes = require('./routes/generation');
 const authRoutes = require('./routes/auth');
+const orderRoutes = require('./routes/orders');
 
 const app = express();
 const PORT = process.env.PORT || 5002; 
@@ -46,6 +47,7 @@ app.use('/api', recognitionRoutes);
 app.use('/api', historyRoutes);
 app.use('/api', generationRoutes);
 app.use('/api', authRoutes);
+app.use('/api', orderRoutes);
 
 // Root endpoint
 app.get('/', (req, res) => {

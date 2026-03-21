@@ -1,0 +1,203 @@
+[
+  {
+    "id": "CRAFT-1774082357728-437",
+    "timestamp": "2026-03-21T08:39:17.728Z",
+    "customer": {
+      "firstName": "Subhalaxmi",
+      "lastName": "Pradhan",
+      "email": "pradhan.subhalaxmi9178@gmail.com",
+      "address": "Balasore"
+    },
+    "items": [
+      {
+        "id": 1,
+        "name": "Handwoven Ceramic Bowl",
+        "price": 45,
+        "image": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
+        "rating": 4.8,
+        "artisan": "Maria Santos",
+        "origin": "Mexico",
+        "quantity": 1
+      },
+      {
+        "id": 5,
+        "name": "Artisan Jewelry Collection",
+        "price": 125,
+        "image": "https://images.unsplash.com/photo-1766560360266-38abfd6ce9a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
+        "rating": 5,
+        "artisan": "Sofia Rodriguez",
+        "origin": "Peru",
+        "quantity": 1
+      }
+    ],
+    "total": 170
+  },
+  {
+    "id": "CRAFT-1774082380896-731",
+    "timestamp": "2026-03-21T08:39:40.896Z",
+    "customer": {
+      "firstName": "Subhalaxmi",
+      "lastName": "Pradhan",
+      "email": "pradhan.subhalaxmi9178@gmail.com",
+      "address": "Balasore"
+    },
+    "items": [
+      {
+        "id": 2,
+        "name": "Traditional Textile Runner",
+        "price": 89,
+        "image": "https://images.unsplash.com/photo-1771098302176-3dea27fdba7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
+        "rating": 4.9,
+        "artisan": "Anita Sharma",
+        "origin": "India",
+        "quantity": 1
+      }
+    ],
+    "total": 89
+  },
+  {
+    "id": "CRAFT-1774084755124-384",
+    "timestamp": "2026-03-21T09:19:15.124Z",
+    "customer": {
+      "firstName": "Subhalaxmi",
+      "lastName": "Pradhan",
+      "email": "pradhan.subhalaxmi9178@gmail.com",
+      "address": "Balasore"
+    },
+    "items": [
+      {
+        "id": 2,
+        "name": "Artisan Pottery Vase",
+        "price": 5495,
+        "category": "Pottery",
+        "image": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
+        "rating": 4.7,
+        "artisan": "Kenji Tanaka",
+        "origin": "Japan",
+        "quantity": 1
+      }
+    ],
+    "total": 5495
+  },
+  {
+    "id": "CRAFT-1774088300948-881",
+    "timestamp": "2026-03-21T10:18:20.948Z",
+    "customer": {
+      "firstName": "Subhalaxmi",
+      "lastName": "Pradhan",
+      "email": "pradhan.subhalaxmi9178@gmail.com",
+      "address": "Balasore"
+    },
+    "items": [
+      {
+        "id": 2,
+        "name": "Artisan Pottery Vase",
+        "price": 5495,
+        "category": "Pottery",
+        "image": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
+        "rating": 4.7,
+        "artisan": "Kenji Tanaka",
+        "origin": "Japan",
+        "quantity": 2
+      }
+    ],
+    "total": 10990
+  },
+  {
+    "id": "CRAFT-1774090612962-599",
+    "timestamp": "2026-03-21T10:56:52.962Z",
+    "customer": {
+      "firstName": "Subhalaxmi",
+      "lastName": "Pradhan",
+      "email": "pradhan.subhalaxmi9178@gmail.com",
+      "address": "Balasore"
+    },
+    "items": [
+      {
+        "id": 2,
+        "name": "Artisan Pottery Vase",
+        "price": 5495,
+        "category": "Pottery",
+        "image": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
+        "rating": 4.7,
+        "artisan": "Kenji Tanaka",
+        "origin": "Japan",
+        "quantity": 1
+      }
+    ],
+    "total": 5495
+  },
+  {
+    "id": "CRAFT-1774092460318-355",
+    "timestamp": "2026-03-21T11:27:40.318Z",
+    "customer": {
+      "firstName": "Subhalaxmi",
+      "lastName": "Pradhan",
+      "email": "pradhan.subhalaxmi9178@gmail.com",
+      "address": "Balasore"
+    },
+    "items": [
+      {
+        "id": 5,
+        "name": "Handmade Savannah Basket Set",
+        "price": 4260,
+        "category": "Baskets",
+        "image": "https://images.unsplash.com/photo-1622701893201-9bc9eb616690?auto=format&fit=crop&h=600&w=600&q=80",
+        "rating": 4.9,
+        "artisan": "Amara Okafor",
+        "origin": "Bolgatanga, Ghana",
+        "description": "Authentic Elephant Grass weave using triple-strand techniques for extreme durability and vibrant colors.",
+        "quantity": 1
+      }
+    ],
+    "total": 4260
+  },
+  {
+    "id": "CRAFT-1774096037022-756",
+    "timestamp": "2026-03-21T12:27:17.022Z",
+    "customer": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "address": "123 Test St"
+    },
+    "items": [
+      {
+        "id": 1,
+        "name": "Handwoven Ceramic Bowl",
+        "price": 3690,
+        "category": "Pottery",
+        "image": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
+        "rating": 4.8,
+        "artisan": "Maria Santos",
+        "origin": "Mexico",
+        "quantity": 1
+      }
+    ],
+    "total": 3690
+  },
+  {
+    "id": "CRAFT-1774097604351-131",
+    "timestamp": "2026-03-21T12:53:24.352Z",
+    "customer": {
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "address": "123"
+    },
+    "items": [
+      {
+        "id": 1,
+        "name": "Handwoven Ceramic Bowl",
+        "price": 3690,
+        "category": "Pottery",
+        "image": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
+        "rating": 4.8,
+        "artisan": "Maria Santos",
+        "origin": "Mexico",
+        "quantity": 1
+      }
+    ],
+    "total": 3690
+  }
+]

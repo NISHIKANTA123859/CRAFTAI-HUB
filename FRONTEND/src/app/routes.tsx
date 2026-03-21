@@ -6,9 +6,13 @@ import { Home } from "./pages/Home";
 import { CraftVision } from "./pages/CraftVision";
 import { CraftGen } from "./pages/CraftGen";
 import { CraftMarket } from "./pages/CraftMarket";
+import { Checkout } from "./pages/Checkout";
+import { AdminDashboard } from "./pages/AdminDashboard";
 import { CraftAuth } from "./pages/CraftAuth";
 import { CraftVerse } from "./pages/CraftVerse";
 import { History } from "./pages/History";
+import { TrackOrder } from "./pages/TrackOrder";
+import { NotFound } from "./pages/NotFound";
 
 export const router = createBrowserRouter([
   // Public: Login page (fullscreen, no layout shell)
@@ -30,9 +34,22 @@ export const router = createBrowserRouter([
       { path: "craft-auth", element: <ProtectedRoute allowedRoles={["buyer"]}><CraftAuth /></ProtectedRoute> },
       { path: "museum", element: <ProtectedRoute allowedRoles={["buyer"]}><CraftVerse /></ProtectedRoute> },
       { path: "history", element: <ProtectedRoute allowedRoles={["buyer"]}><History /></ProtectedRoute> },
+      { path: "track-order", element: <ProtectedRoute allowedRoles={["buyer"]}><TrackOrder /></ProtectedRoute> },
 
       // Shared marketplace (both buyer and seller)
-      { path: "marketplace", element: <ProtectedRoute allowedRoles={["buyer", "seller"]}><CraftMarket /></ProtectedRoute> },
+      { 
+        path: "marketplace",
+        children: [
+          { index: true, element: <ProtectedRoute allowedRoles={["buyer", "seller"]}><CraftMarket /></ProtectedRoute> },
+          { path: "checkout", element: <ProtectedRoute allowedRoles={["buyer", "seller"]}><Checkout /></ProtectedRoute> },
+        ]
+      },
+      
+      // Admin
+      { path: "admin", element: <AdminDashboard /> },
+      
+      // Fallback
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);

@@ -68,6 +68,7 @@ function LogoutModal({ onConfirm, onCancel }: { onConfirm: () => void; onCancel:
 
 export function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const location = useLocation();
@@ -105,21 +106,44 @@ export function Layout() {
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-1">
-              {links.map(({ to, label, icon: Icon }) => (
-                <Link
-                  key={to}
-                  to={to}
-                  className={`transition-all font-semibold px-3 py-2 rounded-xl flex items-center gap-1.5 text-sm ${
-                    isActive(to)
-                      ? "bg-purple-50 text-purple-700 shadow-sm border border-purple-100"
-                      : "text-gray-600 hover:text-purple-600 hover:bg-purple-50/60"
-                  }`}
-                >
-                  <Icon className="size-3.5" />
-                  {label}
-                </Link>
-              ))}
+            <div 
+              className="hidden md:flex items-center gap-1 relative"
+              onMouseEnter={() => setIsDesktopMenuOpen(true)}
+              onMouseLeave={() => setIsDesktopMenuOpen(false)}
+            >
+              <button className="transition-all font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-100 shadow-sm">
+                <Menu className="size-4.5" />
+                Explore
+              </button>
+              <AnimatePresence>
+                {isDesktopMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-[calc(100%+0.5rem)] left-0 w-56 bg-white border border-purple-100 rounded-2xl shadow-xl overflow-hidden py-2"
+                  >
+                    {links.map(({ to, label, icon: Icon }) => (
+                      <Link
+                        key={to}
+                        to={to}
+                        onClick={() => setIsDesktopMenuOpen(false)}
+                        className={`flex items-center group gap-3 mx-2 px-3 py-2.5 font-bold text-sm rounded-xl transition-all ${
+                          isActive(to)
+                            ? "bg-purple-50 text-purple-700"
+                            : "text-gray-600 hover:bg-purple-50 hover:text-purple-600"
+                        }`}
+                      >
+                        <div className={`p-1.5 rounded-lg transition-colors ${isActive(to) ? "bg-purple-100" : "bg-gray-50 group-hover:bg-purple-100"}`}>
+                          <Icon className="size-4" />
+                        </div>
+                        {label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Desktop Right (Cart + User + Logout) */}

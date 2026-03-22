@@ -51,11 +51,11 @@ def load_cnn_model():
         try:
             import tensorflow as tf
             cnn_model = tf.keras.models.load_model(model_path)
-            print("✅ CraftAuth CNN model loaded successfully.")
+            print("CraftAuth CNN model loaded successfully.")
         except Exception as e:
-            print(f"⚠️  Could not load CNN model: {e}")
+            print(f"Could not load CNN model: {e}")
     else:
-        print("ℹ️  No craftauth_model.h5 found. Will use Gemini-only fallback.")
+        print("No craftauth_model.h5 found. Will use Gemini-only fallback.")
 
 load_cnn_model()
 

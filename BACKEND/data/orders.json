@@ -199,5 +199,30 @@
       }
     ],
     "total": 3690
+  },
+  {
+    "id": "CRAFT-1774122134083-60",
+    "timestamp": "2026-03-21T19:42:14.083Z",
+    "status": "Processing",
+    "customer": {
+      "firstName": "Subhalaxmi",
+      "lastName": "Pradhan",
+      "email": "pradhan.subhalaxmi9178@gmail.com",
+      "address": "Balasore"
+    },
+    "items": [
+      {
+        "id": 2,
+        "name": "Artisan Pottery Vase",
+        "price": 5495,
+        "category": "Pottery",
+        "image": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
+        "rating": 4.7,
+        "artisan": "Kenji Tanaka",
+        "origin": "Japan",
+        "quantity": 1
+      }
+    ],
+    "total": 5495
   }
 ]

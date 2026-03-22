@@ -1,4 +1,4 @@
-import { ShoppingBag, Star, ShoppingCart, Check, Sparkles, X, ShieldCheck, MapPin, Info } from "lucide-react";
+import { ShoppingBag, Star, ShoppingCart, Check, Sparkles, X, ShieldCheck, MapPin, Info, Search } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router";
@@ -121,6 +121,7 @@ export function CraftMarket() {
   const navigate = useNavigate();
   const [addedId, setAddedId] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const [analyzingId, setAnalyzingId] = useState<number | null>(null);
   const [analysisResult, setAnalysisResult] = useState<any>(null);
 
@@ -157,9 +158,13 @@ export function CraftMarket() {
     }
   };
 
-  const filteredProducts = selectedCategory === "All" 
-    ? products 
-    : products.filter(p => p.category === selectedCategory);
+  const filteredProducts = products.filter(p => {
+    const matchesCategory = selectedCategory === "All" || p.category === selectedCategory;
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          p.artisan.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          p.origin.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div className="py-16 px-4 sm:px-6 lg:px-8 relative">
@@ -257,6 +262,28 @@ export function CraftMarket() {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4 tracking-tight">CraftMarket AI</h1>
           <p className="text-xl text-gray-600">Discover and purchase authentic handcrafted treasures</p>
+        </div>
+
+        {/* Search Bar */}
+        <div className="max-w-2xl mx-auto mb-8 relative group">
+          <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+            <Search className="size-5 text-purple-400 group-focus-within:text-purple-600 transition-colors" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search products, artisans, or origins..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-14 pr-12 py-4 rounded-3xl border-2 border-purple-100 bg-white/80 backdrop-blur-md focus:bg-white focus:border-purple-400 focus:outline-none focus:ring-4 focus:ring-purple-500/10 transition-all font-semibold text-gray-900 shadow-xl shadow-purple-500/5 placeholder:text-gray-400 placeholder:font-medium"
+          />
+          {searchQuery && (
+            <button 
+              onClick={() => setSearchQuery("")}
+              className="absolute inset-y-0 right-0 pr-5 flex items-center text-gray-400 hover:text-purple-600 transition-colors"
+            >
+              <X className="size-5" />
+            </button>
+          )}
         </div>
 
         {/* Category Filters */}

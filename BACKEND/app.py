@@ -8,11 +8,30 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import google.generativeai as genai
 from PIL import Image
+import pymysql
+from pymysql import Error
 
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
+
+# ─── MySQL Database Configuration ──────────────────────────────────────────────
+DB_CONFIG = {
+    "host": "localhost",
+    "user": "root",
+    "password": "bapun123",
+    "database": "CRAFTAI_HUB"
+}
+
+def get_db_connection():
+    """Create and return a MySQL database connection."""
+    try:
+        conn = pymysql.connect(**DB_CONFIG)
+        return conn
+    except Error as e:
+        print(f"Database connection error: {e}")
+        return None
 
 # Configure Gemini
 api_key = os.getenv("GEMINI_API_KEY")
@@ -204,6 +223,108 @@ def health_check():
         "gemini_configured": bool(api_key),
         "cnn_model_loaded": cnn_model is not None
     })
+
+
+# ─── Authentication Endpoints ─────────────────────────────────────────────────
+@app.route('/api/login', methods=['POST'])
+def login():
+    """User login endpoint - validates credentials and returns user role."""
+    try:
+        data = request.json
+        if not data or 'email' not in data or 'password' not in data:
+            return jsonify({"success": False, "message": "Email and password required"}), 400
+        
+        email = data.get('email')
+        password = data.get('password')
+        
+        conn = get_db_connection()
+        if not conn:
+            return jsonify({"success": False, "message": "Database connection failed"}), 500
+        
+        try:
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            
+            # Query user by email and password
+            query = "SELECT id, username, email, role FROM users WHERE email=%s AND password=%s"
+            cursor.execute(query, (email, password))
+            user = cursor.fetchone()
+            
+            cursor.close()
+            
+            if user:
+                return jsonify({
+                    "success": True,
+                    "message": "Login successful",
+                    "user": {
+                        "id": user['id'],
+                        "username": user['username'],
+                        "email": user['email'],
+                        "role": user['role']
+                    }
+                }), 200
+            else:
+                return jsonify({"success": False, "message": "Invalid email or password"}), 401
+        finally:
+            conn.close()
+    
+    except Exception as e:
+        print(f"Login error: {e}")
+        return jsonify({"success": False, "message": str(e)}), 500
+
+
+@app.route('/api/register', methods=['POST'])
+def register():
+    """User registration endpoint - creates new user account."""
+    try:
+        data = request.json
+        if not data or 'username' not in data or 'email' not in data or 'password' not in data or 'role' not in data:
+            return jsonify({"success": False, "message": "Username, email, password, and role required"}), 400
+        
+        username = data.get('username')
+        email = data.get('email')
+        password = data.get('password')
+        role = data.get('role', 'buyer')  # Default role is buyer
+        
+        conn = get_db_connection()
+        if not conn:
+            return jsonify({"success": False, "message": "Database connection failed"}), 500
+        
+        try:
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            
+            # Check if user already exists
+            check_query = "SELECT id FROM users WHERE email=%s"
+            cursor.execute(check_query, (email,))
+            existing_user = cursor.fetchone()
+            
+            if existing_user:
+                cursor.close()
+                return jsonify({"success": False, "message": "Email already registered"}), 409
+            
+            # Insert new user
+            insert_query = "INSERT INTO users (username, email, password, role) VALUES (%s, %s, %s, %s)"
+            cursor.execute(insert_query, (username, email, password, role))
+            conn.commit()
+            
+            user_id = cursor.lastrowid
+            cursor.close()
+            
+            return jsonify({
+                "success": True,
+                "message": "Registration successful",
+                "user": {
+                    "id": user_id,
+                    "username": username,
+                    "email": email,
+                    "role": role
+                }
+            }), 201
+        finally:
+            conn.close()
+    
+    except Exception as e:
+        print(f"Registration error: {e}")
+        return jsonify({"success": False, "message": str(e)}), 500
 
 
 if __name__ == '__main__':
